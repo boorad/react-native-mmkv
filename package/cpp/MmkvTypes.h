@@ -27,6 +27,7 @@ namespace mmkv {
     
     constexpr auto MMKV_SINGLE_PROCESS = ::MMKV_SINGLE_PROCESS;
     constexpr auto MMKV_MULTI_PROCESS = ::MMKV_MULTI_PROCESS;
+    constexpr auto MMKV_READ_ONLY = ::MMKVMode::MMKV_READ_ONLY;
 }
 
 #else

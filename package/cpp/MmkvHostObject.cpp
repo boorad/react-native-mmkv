@@ -27,7 +27,7 @@ MmkvHostObject::MmkvHostObject(const facebook::react::MMKVConfig& config) {
   MMKVMode mode = getMMKVMode(config);
   if (config.readOnly.has_value() && config.readOnly.value()) {
     MmkvLogger::log("RNMMKV", "Instance is read-only!");
-    mode = mode | MMKVMode::MMKV_READ_ONLY;
+    mode = mode | mmkv::MMKV_READ_ONLY;
   }
 
 #ifdef __APPLE__
@@ -70,14 +70,14 @@ std::vector<jsi::PropNameID> MmkvHostObject::getPropertyNames(jsi::Runtime& rt) 
 
 MMKVMode MmkvHostObject::getMMKVMode(const facebook::react::MMKVConfig& config) {
   if (!config.mode.has_value()) {
-    return MMKVMode::MMKV_SINGLE_PROCESS;
+    return mmkv::MMKV_SINGLE_PROCESS;
   }
   react::NativeMmkvMode mode = config.mode.value();
   switch (mode) {
     case react::NativeMmkvMode::SINGLE_PROCESS:
-      return MMKVMode::MMKV_SINGLE_PROCESS;
+      return mmkv::MMKV_SINGLE_PROCESS;
     case react::NativeMmkvMode::MULTI_PROCESS:
-      return MMKVMode::MMKV_MULTI_PROCESS;
+      return mmkv::MMKV_MULTI_PROCESS;
     default:
       [[unlikely]] throw std::runtime_error("Invalid MMKV Mode value!");
   }
